@@ -13,7 +13,7 @@ RUN apk update
 
 # Install aws cli
 RUN \
-    apk -Uuv add make gcc groff less \
+    apk -Uuv add make gcc groff less git openssh \
         musl-dev libffi-dev openssl-dev \
         python2-dev py-pip && \
     pip install awscli docker-compose && \
