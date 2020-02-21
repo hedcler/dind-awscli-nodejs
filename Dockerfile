@@ -13,7 +13,7 @@ RUN apk update
 
 # Install aws cli
 RUN \
-    apk -Uuv add make gcc groff less git openssh \
+    apk -Uuv add --no-cache make gcc groff less git openssh \
         musl-dev libffi-dev openssl-dev \
         python2-dev py-pip && \
     pip install awscli docker-compose && \
@@ -22,9 +22,8 @@ RUN \
 
 # Install NodeJS and update NPM
 RUN \
-    apk add nodejs npm && \
+    apk add --no-cache gettext nodejs npm && \
     npm install -g npm@latest && \
-    rm /var/cache/apk/* && \
     npm --version && \
     node --version
 
