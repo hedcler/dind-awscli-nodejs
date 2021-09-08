@@ -1,4 +1,4 @@
-FROM docker:latest
+FROM docker:stable
 
 # Host Environment
 ARG ENV
