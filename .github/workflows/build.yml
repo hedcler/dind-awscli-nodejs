@@ -1,0 +1,39 @@
+name: build
+
+on:
+  push:
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.md'
+  pull_request:
+    branches: '*'
+    tags: '*'
+    paths-ignore: '**.md'
+  workflow_dispatch:
+
+env:
+  DIMG: dind-awscli-nodejs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Lint Dockerfile
+        run: docker run --rm -i hadolint/hadolint < Dockerfile
+
+      - name: Build image
+        run: docker build -t $DIMG .
+
+      - name: Binary test
+        run: |
+          docker run --rm $DIMG docker --version
+          docker run --rm $DIMG /usr/bin/python3 --version
+          docker run --rm $DIMG /usr/bin/pip3 --version
+          docker run --rm $DIMG /usr/bin/node --version
+          docker run --rm $DIMG /usr/bin/npm --version
+          docker run --rm $DIMG /usr/bin/aws --version
+          docker run --rm $DIMG /usr/bin/sam --version
+          docker run --rm $DIMG /usr/bin/docker-compose --version
