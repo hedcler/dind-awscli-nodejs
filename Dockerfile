@@ -31,7 +31,7 @@ RUN pip install --no-cache-dir --no-deps -r requirements.txt \
 
 
 FROM pip-requirements AS nodejs-requirements
-RUN npm i -g npm@latest
+RUN npm i -g npm@8.8.0
 
 
 # check whether the relevant binaries are accessible on $PATH
