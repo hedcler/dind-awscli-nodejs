@@ -24,6 +24,7 @@ RUN apk -Uuv add --no-cache \
 
 # aws cli tools and docker-compose (rust and cargo is required to build docker-compose)
 FROM system-requirements AS pip-requirements
+WORKDIR /
 COPY pip/requirements.txt .
 RUN pip install --no-cache-dir --no-deps -r requirements.txt \
     && rm requirements.txt
