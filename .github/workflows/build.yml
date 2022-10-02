@@ -35,5 +35,4 @@ jobs:
           docker run --rm $DIMG /usr/bin/node --version
           docker run --rm $DIMG /usr/bin/npm --version
           docker run --rm $DIMG /usr/bin/aws --version
-          docker run --rm $DIMG /usr/bin/sam --version
           docker run --rm $DIMG /usr/bin/docker-compose --version
